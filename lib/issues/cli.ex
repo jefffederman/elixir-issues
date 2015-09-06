@@ -1,4 +1,6 @@
 defmodule Issues.CLI do
+  alias Issues.TableFormatter, as: TF
+
   @default_count 4
 
   def run(argv) do
@@ -28,8 +30,7 @@ defmodule Issues.CLI do
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
     |> Enum.take(count)
-    |> get_fields
-    |> format_as_table
+    |> TF.print_table_for_columns(["number", "created_at", "title"])
   end
 
   def decode_response({:ok, body}), do: body
