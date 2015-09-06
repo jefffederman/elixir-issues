@@ -1,0 +1,357 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+        <title>Issues.TableFormatter – Issues v0.0.1</title>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.8.4">
+
+    <link rel="stylesheet" href="dist/app.css">
+  </head>
+  <body>
+
+    
+    <div class="row row-offcanvas row-offcanvas-left">
+<section id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+  <p class="pull-right visible-xs">
+  <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  </p>
+
+  <h1 id="full_list_header">
+    
+      <a href="https://github.com/jefffederman/elixir-issues">Issues v0.0.1</a>
+    
+  </h1>
+
+  <h2 id="sub_list_header">
+    
+    <a href="overview.html">Overview</a>
+  </h2>
+
+  <div class="nav">
+    
+      <span><a id="modules_list" href="#full_list">Modules</a></span>
+    
+    
+      <span role="presentation" class="disabled">Exceptions</span>
+    
+    
+      <span role="presentation" class="disabled">Protocols</span>
+    
+  </div>
+
+  <div id="search">
+    <div class="col-xs-10">
+      <div class="input-group input-group-sm">
+        <label for="search_field" class="sr-only">Search</label>
+        <input type="text" id="search_field" class="form-control" placeholder="Search" autocomplete="off" autofocus="autofocus" results="0">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-xs-10 -->
+    <div class="col-xs-2" id="spinning">
+      <span></span>
+    </div><!-- /.col-xs-2 -->
+  </div><!-- /#search .row -->
+
+  <script src="dist/sidebar_items.js" defer></script>
+
+  <ul id="full_list">
+  </ul>
+
+  <div id="no_results"></div>
+</section><!--/.sidebar-offcanvas -->
+<section id="content" class="col-xs-12 col-sm-9">
+
+
+      <div class="breadcrumbs">
+        <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+        Issues v0.0.1 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="Issues.html#content">Issues</a> &rarr; <a href="Issues.TableFormatter.html#content">TableFormatter</a>
+      </div>
+
+      <h1>
+        Issues.TableFormatter
+        
+      </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary_details">Summary</a></li>
+        
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+      </ul>
+
+      
+
+      
+        <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L1" class="view_source">Source</a>
+      
+
+      
+        <section id="summary_details" class="details_list">
+          <h1>Summary</h1>
+          <table class="summary">
+            <tr>
+  <td class="summary_signature"><a href="#format_for/1">format_for(column_widths)</a></td>
+  <td class="summary_synopsis"><p>Return a format string that hard codes the widths of a set of columns. We put <code class="inline">&quot; | &quot;</code> between each column.</p>
+<h2>Example</h2>
+<p>iex&gt; widths = [5,6,99]
+iex&gt; Issues.TableFormatter.format_for(widths)
+“~-5s | ~-6s | ~-99s~n”</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#print_table_for_columns/2">print_table_for_columns(rows, headers)</a></td>
+  <td class="summary_synopsis"><p>Takes a list of raw data, where each row is a HashDict, and a list of headers. Prints a table to STDOUT of the data from each row identified by each header. I.e., each header identifies a column, and those columns are extracted and printed from the rows</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#printable/1">printable(str)</a></td>
+  <td class="summary_synopsis"><p>Return a binary (string) version of our parameter.</p>
+<h2>Examples</h2>
+<p>iex&gt; Issues.TableFormatter.printable(“a”)
+“a”
+iex&gt; Issues.TableFormatter.printable(99)
+“99”</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#puts_in_columns/2">puts_in_columns(data_by_columns, format)</a></td>
+  <td class="summary_synopsis"><p>Given a list containing rows of data, a list containing the header selectors, and a format string, write the extracted data under control of the format string</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#puts_one_line_in_columns/2">puts_one_line_in_columns(fields, format)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#separator/1">separator(column_widths)</a></td>
+  <td class="summary_synopsis"><p>Generate the line that goes below the column headings. It’s a string of hyphens, with + signs for the column delimiters.</p>
+<h2>Example</h2>
+<p>iex&gt; widths = [5,6,9]
+iex&gt; Issues.TableFormatter.separator(widths)
+“———+————+—————“</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#split_into_columns/2">split_into_columns(rows, headers)</a></td>
+  <td class="summary_synopsis"><p>Given a list of rows, where each row contains a keyed list of columns, return a list containing lists of the data in each column. The <code class="inline">headers</code> parameter contains the list of columns to extract.</p>
+<h2>Example</h2>
+<p>iex&gt; list = [Enum.into([{"a", "1"}, {"b", "2"}, {"c", "3"}], HashDict.new),
+...>        Enum.into([{"a", "4"}, {"b", "5"}, {"c", "6"}], HashDict.new)]
+iex&gt; Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
+[["1", "4"], ["2", "5"], ["3", "6"]]</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#widths_of/1">widths_of(columns)</a></td>
+  <td class="summary_synopsis"><p>Given a list containing sublists, where each sublist contains the data for a column, return a list containing the maximum width of each column.</p>
+<h2>Example</h2>
+<p>iex&gt; data = [["cat", "wombat", "elk"], ["mongoose", "ant", "gnu"]]
+iex&gt; Issues.TableFormatter.widths_of(data)
+[6,8]</p>
+</td>
+</tr>
+
+          </table>
+        </section>
+      
+
+      
+
+      
+        <section id="functions_details" class="details_list">
+          <h1>Functions</h1>
+          <section class="detail">
+  <div class="detail_header" id="format_for/1">
+    <span class="signature"><strong>format_for(column_widths)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#format_for/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Return a format string that hard codes the widths of a set of columns. We put <code class="inline">&quot; | &quot;</code> between each column.</p>
+<h2>Example</h2>
+<p>iex&gt; widths = [5,6,99]
+iex&gt; Issues.TableFormatter.format_for(widths)
+“~-5s | ~-6s | ~-99s~n”</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L63" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="print_table_for_columns/2">
+    <span class="signature"><strong>print_table_for_columns(rows, headers)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#print_table_for_columns/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Takes a list of raw data, where each row is a HashDict, and a list of headers. Prints a table to STDOUT of the data from each row identified by each header. I.e., each header identifies a column, and those columns are extracted and printed from the rows.</p>
+<p>We calculate the width of each column to fit the longest element in that column.</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L9" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="printable/1">
+    <span class="signature"><strong>printable(str)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#printable/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Return a binary (string) version of our parameter.</p>
+<h2>Examples</h2>
+<p>iex&gt; Issues.TableFormatter.printable(“a”)
+“a”
+iex&gt; Issues.TableFormatter.printable(99)
+“99”</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L42" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="puts_in_columns/2">
+    <span class="signature"><strong>puts_in_columns(data_by_columns, format)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#puts_in_columns/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Given a list containing rows of data, a list containing the header selectors, and a format string, write the extracted data under control of the format string.</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L82" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="puts_one_line_in_columns/2">
+    <span class="signature"><strong>puts_one_line_in_columns(fields, format)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#puts_one_line_in_columns/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L89" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="separator/1">
+    <span class="signature"><strong>separator(column_widths)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#separator/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Generate the line that goes below the column headings. It’s a string of hyphens, with + signs for the column delimiters.</p>
+<h2>Example</h2>
+<p>iex&gt; widths = [5,6,9]
+iex&gt; Issues.TableFormatter.separator(widths)
+“———+————+—————“</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L75" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="split_into_columns/2">
+    <span class="signature"><strong>split_into_columns(rows, headers)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#split_into_columns/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Given a list of rows, where each row contains a keyed list of columns, return a list containing lists of the data in each column. The <code class="inline">headers</code> parameter contains the list of columns to extract.</p>
+<h2>Example</h2>
+<p>iex&gt; list = [Enum.into([{"a", "1"}, {"b", "2"}, {"c", "3"}], HashDict.new),
+...>        Enum.into([{"a", "4"}, {"b", "5"}, {"c", "6"}], HashDict.new)]
+iex&gt; Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
+[["1", "4"], ["2", "5"], ["3", "6"]]</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L27" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="widths_of/1">
+    <span class="signature"><strong>widths_of(columns)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#widths_of/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Given a list containing sublists, where each sublist contains the data for a column, return a list containing the maximum width of each column.</p>
+<h2>Example</h2>
+<p>iex&gt; data = [["cat", "wombat", "elk"], ["mongoose", "ant", "gnu"]]
+iex&gt; Issues.TableFormatter.widths_of(data)
+[6,8]</p>
+
+  </section>
+  
+    <a href="https://github.com/jefffederman/elixir-issues/blob/master/lib/issues/table_formatter.ex#L52" class="view_source">Source</a>
+  
+</section>
+
+        </section>
+      
+
+      
+
+      
+      </section> <!--/content -->
+</div><!--/row -->
+
+    <script src="dist/app.js"></script>
+  </body>
+</html>
+
